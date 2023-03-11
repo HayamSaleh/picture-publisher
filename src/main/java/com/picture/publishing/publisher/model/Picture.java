@@ -59,10 +59,10 @@ public class Picture {
 
 	}
 
-	public Picture(Long id, String name, PictureStatus status) {
+	public Picture(Long id, String description, PictureStatus status) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.description = description;
 		this.status = status;
 	}
 

@@ -24,7 +24,6 @@ import com.picture.publishing.publisher.model.PictureCategory;
 import com.picture.publishing.publisher.model.PictureStatus;
 import com.picture.publishing.publisher.model.User;
 import com.picture.publishing.publisher.repository.PictureRepository;
-import com.picture.publishing.publisher.service.UserService;
 import com.picture.publishing.publisher.service.impl.PictureServiceImpl;
 import com.picture.publishing.publisher.utils.MapperUtils;
 import com.picture.publishing.publisher.utils.PictureUtils;
@@ -65,6 +64,7 @@ class PictureServiceImplTest {
 
 		doReturn(new User()).when(userService).findUserByUsername(username);
 		doReturn(username).when(userService).getCurrentUserName();
+		doReturn(true).when(pictureUtils).validateFile(any());
 		doReturn(new Dimension()).when(pictureUtils).getImageDimensions(any());
 		doReturn(expectedPictureDto).when(dozerMapper).map(savedPicture, PictureDto.class);
 		doReturn(savedPicture).when(pictureRepository).save(any(Picture.class));
@@ -80,6 +80,7 @@ class PictureServiceImplTest {
 	void submitPicture_InvalidPictureType_ThrowException() throws IOException {
 		MockMultipartFile file = new MockMultipartFile("data", "filename.txt", "txt/txt",
 				new byte[] { 0x01, 0x02, 0x03 });
+		doReturn(false).when(pictureUtils).validateFile(any());
 
 		assertThatThrownBy(() -> pictureService.submitPicture(null, null, file))
 				.isInstanceOf(NotAllowedRequestException.class);
