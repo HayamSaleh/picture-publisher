@@ -45,8 +45,9 @@ The application should now be running on http://localhost:8080.
 
 Open a web browser and navigate to http://localhost:8080/swagger-ui.html.
 
-##Login
+## Login
 Admin: username=admin password=admin123
+
 Use the following POST endpoint for logging: http://localhost:8080/login?username=admin&password=admin123
 
 ## Unit Testing
