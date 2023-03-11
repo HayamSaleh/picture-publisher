@@ -36,6 +36,8 @@ mvn clean install
 ```shell
 java -jar target/publisher-0.0.1-SNAPSHOT.jar
 ```
+
+The project is auto create the database for simplicity
 The application should now be running on http://localhost:8080.
 
 
