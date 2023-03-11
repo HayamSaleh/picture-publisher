@@ -45,8 +45,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
 		String logoutURL = "/logout";
 
 		http.authorizeRequests().antMatchers("/").permitAll().antMatchers(loginUrl).permitAll()
-				.antMatchers("/register", "/pictures/accepted", "swagger-ui/**").permitAll().antMatchers("/admin/**")
-				.hasAuthority(UserRole.ADMIN_ROLE.name()).anyRequest().authenticated()//
+				.antMatchers("/register", "/pictures/accepted", "swagger-ui/**").permitAll()//
+				.antMatchers("/admin/**").hasAuthority(UserRole.ADMIN_ROLE.name()).anyRequest().authenticated()//
 				.and().csrf().disable()//
 				.formLogin().failureHandler((request, response, exception) -> {
 					logger.error("{}:{}", exception, "Login Failed!.");

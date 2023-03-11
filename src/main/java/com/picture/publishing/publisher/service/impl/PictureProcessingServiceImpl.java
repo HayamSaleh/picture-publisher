@@ -109,7 +109,7 @@ public class PictureProcessingServiceImpl implements PictureProcessingService {
 	}
 
 	private String generateUrl(Picture picture) throws IOException {
-		String imagePath = generateRandomFiveDigitsNumber() + picture.getName();
+		String imagePath = generateRandomFiveDigitsNumber() + "-" + picture.getName();
 		Path filePath = Paths.get(PictureService.UPLOAD_ROOT, imagePath);
 		try (ByteArrayInputStream inputStream = new ByteArrayInputStream(picture.getPictureFile())) {
 			Files.copy(inputStream, filePath);
